@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CFA I &amp; II — Study Record</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CFA Record">
+<meta name="theme-color" content="#0E1114">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#0E1114; --panel:#171B20; --panel2:#1D2229; --rule:#262C33; --rule2:#1F252B;
+  --text:#E8ECF1; --dim:#8A94A0; --faint:#5C6670;
+  --amber:#F0B429; --cyan:#5AC8D8; --red:#FF5A5F; --green:#5BD6A0; --grey:#49525B;
+  --sans:-apple-system,system-ui,"SF Pro Text","Helvetica Neue",sans-serif;
+  --num:"SF Pro Display",-apple-system,system-ui,"Helvetica Neue",sans-serif;
+  --pad:max(18px,env(safe-area-inset-left));
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;
+  line-height:1.45;-webkit-text-size-adjust:100%;font-variant-numeric:tabular-nums;
+  padding-bottom:calc(104px + env(safe-area-inset-bottom))}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer;color:inherit}
+.tab{display:none} .tab.on{display:block}
+
+header{position:sticky;top:0;z-index:40;background:rgba(14,17,20,.93);
+  -webkit-backdrop-filter:saturate(1.6) blur(14px);backdrop-filter:saturate(1.6) blur(14px);
+  border-bottom:1px solid var(--rule);padding:calc(10px + env(safe-area-inset-top)) var(--pad) 0}
+.rail{display:flex;align-items:baseline;gap:14px}
+.wordmark{font-size:17px;font-weight:600;margin:0}
+.wordmark em{font-style:normal;color:var(--dim);font-weight:400}
+.rail .spacer{flex:1}
+.stamp{font-size:13.5px;color:var(--dim)}
+nav{display:flex;gap:4px;margin-top:9px;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{font-size:15px;padding:9px 14px 11px;color:var(--dim);border-bottom:2px solid transparent;
+  min-height:44px;white-space:nowrap}
+nav button[aria-selected="true"]{color:var(--text);border-bottom-color:var(--amber);font-weight:600}
+
+main{padding:0 var(--pad)}
+section{max-width:1100px}
+h2{font-size:19px;font-weight:600;margin:32px 0 3px}
+h3.sec{font-size:16px;font-weight:600;margin:24px 0 2px;color:var(--text)}
+.sub{color:var(--dim);font-size:14px;margin:0 0 14px;max-width:66ch}
+
+.plate{background:var(--panel);border:1px solid var(--rule);border-radius:14px;margin:18px 0 0;
+  padding:24px 22px 20px;position:relative;overflow:hidden}
+.plate::after{content:"";position:absolute;inset:0 0 auto 0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(240,180,41,.55),transparent)}
+.heroGrid{display:flex;gap:34px;align-items:flex-end;flex-wrap:wrap}
+.bignum{font-family:var(--num);font-weight:700;font-size:96px;line-height:.82;letter-spacing:-3.5px;
+  color:var(--amber);text-shadow:0 0 44px rgba(240,180,41,.22)}
+.bignum small{font-size:34px;letter-spacing:-1px}
+.bigcap{font-size:13.5px;color:var(--dim);margin-top:11px}
+.heroRight{flex:1;min-width:270px}
+.heroLine{font-size:17px;margin:0 0 3px;font-weight:600}
+.heroMeta{font-size:14px;color:var(--dim);margin:0}
+.verdict{display:inline-flex;align-items:center;gap:7px;margin-top:12px;font-size:13.5px;padding:5px 12px;
+  border-radius:999px;background:var(--panel2);border:1px solid var(--rule)}
+.verdict i{width:7px;height:7px;border-radius:50%;background:currentColor;display:block}
+.v-ok{color:var(--cyan)} .v-behind{color:var(--red)} .v-done{color:var(--green)}
+
+.ribbonWrap{margin-top:22px}
+.ribbon{display:flex;gap:1px;height:42px;position:relative}
+.tick{flex:1 1 0;min-width:2px;background:#232931;border-radius:1.5px}
+.tick.p1{background:#2F4A52}.tick.p2{background:#3D7682}.tick.p3{background:#4AA2B4}
+.tick.p4{background:var(--cyan);box-shadow:0 0 7px rgba(90,200,216,.45)}
+.tick.rev{opacity:.6}
+.tick.od{background:var(--red);box-shadow:0 0 7px rgba(255,90,95,.45)}
+.nowmark{position:absolute;top:-7px;bottom:-7px;width:2px;background:var(--amber);z-index:2;
+  box-shadow:0 0 10px rgba(240,180,41,.7)}
+.nowmark::after{content:"";position:absolute;top:-5px;left:-3px;width:8px;height:8px;border-radius:50%;
+  background:var(--amber)}
+.ribScale{display:flex;justify-content:space-between;font-size:12px;color:var(--faint);margin-top:8px}
+
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:12px;overflow:hidden;margin-top:14px}
+.stat{background:var(--panel);padding:13px 15px}
+.stat b{display:block;font-family:var(--num);font-size:26px;font-weight:600;line-height:1.15}
+.stat span{font-size:12.5px;color:var(--dim)}
+.stat.hot b{color:var(--red)}
+
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:8px}
+.box{background:var(--panel);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.box h4{margin:0;padding:12px 14px;font-size:14px;font-weight:600;border-bottom:1px solid var(--rule);
+  color:var(--dim)}
+.kv{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--rule2);
+  font-size:14.5px}
+.kv:last-child{border-bottom:0}
+.kv span{flex:1;color:var(--dim)}
+.kv b{font-family:var(--num);font-weight:600}
+.kv.hot b{color:var(--red)}
+.kv.now{background:rgba(240,180,41,.07)}
+.kv.now span{color:var(--amber)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;
+  border:1px solid var(--rule);border-radius:10px;background:var(--panel2);font-size:15.5px}
+.btn:active{background:#2A313A}
+.btn.primary{background:var(--amber);border-color:var(--amber);color:#14181C;font-weight:600}
+.btn.primary:active{background:#d79e1f}
+.btn.danger{color:var(--red);border-color:#3A2529}
+.btnRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+
+.fab{position:fixed;right:max(18px,env(safe-area-inset-right));
+  bottom:calc(18px + env(safe-area-inset-bottom));z-index:45;background:var(--amber);color:#14181C;
+  border-radius:999px;min-height:58px;padding:0 26px;font-size:17px;font-weight:600;
+  box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 0 1px rgba(240,180,41,.3)}
+.fab:active{background:#d79e1f}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 0}
+.chip{min-height:40px;padding:0 15px;border:1px solid var(--rule);border-radius:999px;font-size:14px;
+  color:var(--dim);background:var(--panel)}
+.chip[aria-pressed="true"]{background:var(--text);border-color:var(--text);color:#0E1114;font-weight:600}
+
+.topicHead{display:flex;align-items:baseline;gap:12px;margin:26px 0 0;padding-bottom:7px;flex-wrap:wrap}
+.topicHead h3{font-size:16.5px;font-weight:600;margin:0;flex:1;min-width:160px}
+.topicHead .tmeta{font-size:13px;color:var(--dim);font-family:var(--num)}
+.tbar{height:3px;background:#232931;border-radius:2px;overflow:hidden;position:relative}
+.tbar i{display:block;height:100%;background:var(--cyan)}
+.tbar u{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--amber);opacity:.85}
+.list{margin-top:2px;border:1px solid var(--rule);border-radius:12px;overflow:hidden;background:var(--panel)}
+.row{display:flex;align-items:center;gap:12px;padding:10px 12px;border-bottom:1px solid var(--rule2)}
+.row:last-child{border-bottom:0}
+.row.behind{background:rgba(255,90,95,.055)}
+.check{flex:0 0 30px;width:30px;height:30px;border-radius:9px;border:1.5px solid #3A424B;display:grid;
+  place-items:center;font-size:17px;color:transparent;transition:all .15s ease}
+.check[data-on="1"]{background:var(--cyan);border-color:var(--cyan);color:#0E1114;font-weight:700}
+.check:active{transform:scale(.9)}
+.nameWrap{flex:1;min-width:0;text-align:left;padding:3px 0;min-height:40px}
+.name{display:block;font-size:15.5px;line-height:1.3;overflow-wrap:anywhere}
+.row.done .name{color:var(--faint);text-decoration:line-through;text-decoration-thickness:1px}
+.pbar{display:block;height:3px;background:#232931;border-radius:2px;margin-top:7px;max-width:360px;
+  position:relative;overflow:visible}
+.pbar i{display:block;height:100%;background:var(--cyan);border-radius:2px}
+.pbar u{position:absolute;top:-2px;height:7px;width:2px;background:var(--amber);opacity:.9}
+.row.behind .pbar i{background:var(--red)}
+.meta{font-size:12px;color:var(--faint);margin-top:5px;display:block}
+.meta b{font-weight:600}
+.flag{font-size:12px;font-weight:600}
+.f-Behind{color:var(--red)} .f-On{color:var(--cyan)} .f-Done{color:var(--green)} .f-Up{color:var(--faint)}
+.hrs{font-family:var(--num);font-size:14px;flex:0 0 84px;text-align:right;color:var(--dim)}
+.hrs b{color:var(--text);font-weight:600}
+.when{font-family:var(--num);font-size:13px;color:var(--dim);flex:0 0 72px;text-align:right}
+.row.behind .when{color:var(--red);font-weight:600}
+.noteDot{color:var(--amber)}
+
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;margin-top:8px;background:var(--panel);border:1px solid var(--rule);
+  border-radius:12px;overflow:hidden;min-width:620px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--rule2);text-align:right;font-size:14.5px;
+  font-family:var(--num);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:12.5px;color:var(--dim);border-bottom:1px solid var(--rule);font-weight:500}
+th:first-child,td:first-child{text-align:left;font-family:var(--sans);white-space:normal}
+tr.tot td{background:var(--panel2);font-weight:600}
+tr.nowrow td{background:rgba(240,180,41,.07)}
+.mini{display:inline-block;width:60px;height:6px;background:#232931;border-radius:3px;vertical-align:middle;
+  overflow:hidden;margin-right:7px}
+.mini i{display:block;height:100%;background:var(--cyan)}
+
+.spark{display:flex;align-items:flex-end;gap:2px;height:84px;margin-top:12px;padding:10px;
+  background:var(--panel);border:1px solid var(--rule);border-radius:12px}
+.spark div{flex:1;background:var(--cyan);border-radius:1.5px;min-height:2px;opacity:.9}
+.spark div.zero{background:#232931;height:2px!important}
+.spark div.today{background:var(--amber)}
+.sparkAx{display:flex;justify-content:space-between;font-size:12px;color:var(--faint);margin-top:6px}
+.chartBox{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:12px;margin-top:10px}
+.chartBox svg{display:block;width:100%;height:230px}
+.legendRow{display:flex;gap:18px;font-size:12.5px;color:var(--dim);margin-top:8px;flex-wrap:wrap}
+.legendRow i{display:inline-block;width:16px;height:3px;vertical-align:middle;margin-right:6px}
+
+.sessionList{margin-top:8px;background:var(--panel);border:1px solid var(--rule);border-radius:12px;
+  overflow:hidden}
+.sessionList .s{display:flex;gap:12px;align-items:center;padding:11px 12px;
+  border-bottom:1px solid var(--rule2);font-size:14.5px}
+.sessionList .s:last-child{border-bottom:0}
+.sd{font-family:var(--num);font-size:13px;color:var(--dim);flex:0 0 66px}
+.sm{flex:1;min-width:0;overflow-wrap:anywhere}
+.sm em{font-style:normal;color:var(--faint)}
+.sh{font-family:var(--num);font-weight:600;flex:0 0 50px;text-align:right}
+.sx{flex:0 0 38px;text-align:right;color:var(--faint);min-height:40px;font-size:21px}
+
+dialog{border:0;padding:0;background:transparent;max-width:none;max-height:none}
+dialog::backdrop{background:rgba(5,7,9,.72);-webkit-backdrop-filter:blur(3px)}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:16px;width:min(580px,94vw);
+  max-height:88vh;overflow:auto;padding:22px var(--pad) calc(22px + env(safe-area-inset-bottom))}
+.card h3{font-size:19px;margin:0 0 2px;font-weight:600}
+.card .ctx{color:var(--dim);font-size:13.5px;margin:0 0 4px}
+label{display:block;font-size:13px;color:var(--dim);margin:16px 0 6px}
+input[type=text],input[type=date],input[type=number],select,textarea{width:100%;min-height:48px;
+  padding:10px 12px;border:1px solid var(--rule);border-radius:10px;background:var(--panel2);font-size:16px}
+textarea{min-height:74px;resize:vertical}
+select{-webkit-appearance:none;appearance:none;
+  background-image:linear-gradient(45deg,transparent 50%,var(--dim) 50%),linear-gradient(135deg,var(--dim) 50%,transparent 50%);
+  background-position:calc(100% - 18px) 21px,calc(100% - 12px) 21px;background-size:6px 6px;background-repeat:no-repeat}
+.seg{display:flex;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--panel2)}
+.seg button{flex:1;min-height:48px;font-size:14.5px;color:var(--dim);border-right:1px solid var(--rule)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--cyan);color:#0E1114;font-weight:600}
+.seg.amber button[aria-pressed="true"]{background:var(--amber);color:#14181C}
+.seg.v5 button{font-size:13px;padding:0 4px}
+.stepper{display:flex;border:1px solid var(--rule);border-radius:10px;background:var(--panel2);overflow:hidden}
+.stepper button{width:64px;font-size:27px;line-height:1}
+.stepper button:active{background:#2A313A}
+.stepper input{border:0;background:transparent;text-align:center;font-family:var(--num);font-size:27px;
+  font-weight:600;min-height:56px;border-radius:0}
+.dlgRow{display:flex;gap:10px;margin-top:22px}
+.dlgRow .btn{flex:1}
+.hint{font-size:12.5px;color:var(--faint);margin-top:8px}
+.hint.err{color:var(--red)}
+
+.setGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+.setItem label{margin-top:0}
+.setNote{font-size:12.5px;color:var(--faint);margin-top:5px}
+.rangeRow{display:flex;align-items:center;gap:14px}
+input[type=range]{flex:1;min-height:44px;accent-color:var(--cyan);background:transparent;border:0;padding:0}
+.rangeVal{font-family:var(--num);font-weight:600;min-width:52px;text-align:right}
+
+.banner{background:rgba(240,180,41,.09);border:1px solid rgba(240,180,41,.35);border-radius:10px;
+  padding:11px 14px;font-size:14px;margin:16px 0 0;display:none;color:#F6D48A}
+.banner.on{display:block}
+.empty{padding:22px 2px;color:var(--dim);font-size:15px;max-width:52ch}
+.footnote{color:var(--faint);font-size:12.5px;margin:36px 0 12px;max-width:76ch;line-height:1.65}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:640px){
+  .strip{grid-template-columns:repeat(2,1fr)}
+  .bignum{font-size:74px;letter-spacing:-2.5px}
+  .when{flex-basis:62px;font-size:12px}
+  .hrs{flex-basis:70px}
+  .seg.v5 button{font-size:11.5px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="rail">
+    <h1 class="wordmark">CFA <em>I &amp; II</em></h1>
+    <span class="spacer"></span>
+    <span class="stamp" id="todayDate"></span>
+  </div>
+  <nav role="tablist">
+    <button role="tab" id="t-today" aria-selected="true" onclick="go('today')">Today</button>
+    <button role="tab" id="t-plan" aria-selected="false" onclick="go('plan')">Modules</button>
+    <button role="tab" id="t-topic" aria-selected="false" onclick="go('topic')">Topics</button>
+    <button role="tab" id="t-month" aria-selected="false" onclick="go('month')">Months</button>
+    <button role="tab" id="t-prog" aria-selected="false" onclick="go('prog')">Sessions</button>
+    <button role="tab" id="t-set" aria-selected="false" onclick="go('set')">Setup</button>
+  </nav>
+</header>
+
+<main>
+<div class="banner" id="storeWarn">This browser is not saving data between visits. Open <b>Setup</b> and export a backup before you close the page.</div>
+<div class="banner" id="backupNag">No backup in over a week. Open <b>Setup</b> and save a copy.</div>
+
+<!-- ============ TODAY ============ -->
+<section class="tab on" id="tab-today">
+  <div class="plate">
+    <div class="heroGrid">
+      <div>
+        <div class="bignum" id="heroNum">—</div>
+        <div class="bigcap" id="heroCap">hours per day needed</div>
+      </div>
+      <div class="heroRight">
+        <p class="heroLine" id="heroLine"></p>
+        <p class="heroMeta" id="heroMeta"></p>
+        <span class="verdict" id="heroVerdict"><i></i><span id="verdictText"></span></span>
+      </div>
+    </div>
+    <div class="ribbonWrap">
+      <div class="ribbon" id="ribbon"></div>
+      <div class="ribScale" id="ribScale"></div>
+    </div>
+  </div>
+
+  <div class="strip" id="strip"></div>
+
+  <div class="cols">
+    <div class="box"><h4>Pace check</h4><div id="paceBox"></div></div>
+    <div class="box"><h4>Module status</h4><div id="statusBox"></div></div>
+    <div class="box"><h4>Milestones</h4><div id="mileBox"></div></div>
+  </div>
+
+  <h2>Due now</h2>
+  <p class="sub">Open modules, soonest target first. The amber notch on each bar is where the calendar says you should be.</p>
+  <div id="dueList"></div>
+
+  <h2>Logged today</h2>
+  <div id="todaySessions"></div>
+</section>
+
+<!-- ============ MODULES ============ -->
+<section class="tab" id="tab-plan">
+  <div class="filters" id="levelSeg">
+    <button class="chip" aria-pressed="true" onclick="setLevel('L1')">Level I</button>
+    <button class="chip" aria-pressed="false" onclick="setLevel('L2')">Level II</button>
+  </div>
+  <div class="filters" id="filtSeg">
+    <button class="chip" aria-pressed="true" onclick="setFilter('all')">All</button>
+    <button class="chip" aria-pressed="false" onclick="setFilter('open')">Not finished</button>
+    <button class="chip" aria-pressed="false" onclick="setFilter('behind')">Behind</button>
+    <button class="chip" aria-pressed="false" onclick="setFilter('od')">Past target</button>
+    <button class="chip" aria-pressed="false" onclick="setFilter('rev')">Revision</button>
+  </div>
+  <p class="sub" style="margin-top:14px">Tick to finish a module. Tap its name for a part-way status, hours, or a note.</p>
+  <div id="planList"></div>
+</section>
+
+<!-- ============ TOPICS ============ -->
+<section class="tab" id="tab-topic">
+  <h2>Level I by topic</h2>
+  <p class="sub">Progress blends hours logged with how far through each module you are. Expected is where the schedule says you should be today.</p>
+  <div class="scroll" id="tblL1"></div>
+  <h2>Level II by topic</h2>
+  <div class="scroll" id="tblL2"></div>
+</section>
+
+<!-- ============ MONTHS ============ -->
+<section class="tab" id="tab-month">
+  <h2>Planned against actual</h2>
+  <p class="sub">Planned hours land in the month a module is due to be finished. Actual comes from your logged sessions.</p>
+  <div class="chartBox">
+    <svg id="cumChart" viewBox="0 0 800 230" preserveAspectRatio="none" aria-label="Cumulative hours chart"></svg>
+  </div>
+  <div class="legendRow">
+    <span><i style="background:var(--grey)"></i>Cumulative planned</span>
+    <span><i style="background:var(--cyan)"></i>Cumulative actual</span>
+    <span><i style="background:var(--amber)"></i>Today</span>
+  </div>
+  <div class="scroll" id="monthTbl"></div>
+</section>
+
+<!-- ============ SESSIONS ============ -->
+<section class="tab" id="tab-prog">
+  <h2>Hours a day, last 30 days</h2>
+  <p class="sub" id="paceSub"></p>
+  <div class="spark" id="spark"></div>
+  <div class="sparkAx" id="sparkAx"></div>
+  <h2>Time by activity</h2>
+  <div class="scroll" id="actTbl"></div>
+  <h2>All sessions</h2>
+  <div id="allSessions"></div>
+</section>
+
+<!-- ============ SETUP ============ -->
+<section class="tab" id="tab-set">
+  <h2>Dates</h2>
+  <p class="sub">Change any of these and every target date, flag and pace figure on the page re-spreads.</p>
+  <div class="setGrid" id="dateGrid"></div>
+  <div class="btnRow"><button class="btn" onclick="resetCfg()">Reset to the original plan</button></div>
+
+  <h2>How progress is scored</h2>
+  <div class="setItem">
+    <label for="wRange">Weight on hours logged, versus how far through the module you are</label>
+    <div class="rangeRow">
+      <input type="range" id="wRange" min="0" max="100" step="5" oninput="setW(this.value)">
+      <span class="rangeVal" id="wVal"></span>
+    </div>
+    <p class="setNote">At 50%, a module you have read but logged no hours against sits at 25%.</p>
+  </div>
+  <div class="setItem" style="margin-top:14px">
+    <label for="tRange">How far behind schedule before a module is flagged</label>
+    <div class="rangeRow">
+      <input type="range" id="tRange" min="0" max="30" step="1" oninput="setT(this.value)">
+      <span class="rangeVal" id="tVal"></span>
+    </div>
+  </div>
+
+  <h2>What this adds up to</h2>
+  <div class="scroll" id="derivedTbl"></div>
+
+  <h2>Keep a copy</h2>
+  <p class="sub">Everything stays on this iPad — nothing is sent anywhere. Save a file now and then, and before you ever clear Safari data.</p>
+  <div class="btnRow">
+    <button class="btn primary" onclick="exportJSON()">Save backup file</button>
+    <button class="btn" onclick="document.getElementById('imp').click()">Restore from file</button>
+    <input type="file" id="imp" accept=".json,application/json" style="display:none" onchange="importJSON(this)">
+    <button class="btn" onclick="exportCSV()">Save Study Log CSV</button>
+  </div>
+  <p class="setNote" id="dataFoot"></p>
+
+  <h2>Start over</h2>
+  <p class="sub">Clears every session, status and note on this device.</p>
+  <div class="btnRow"><button class="btn danger" onclick="wipe()">Erase all my progress</button></div>
+</section>
+
+<p class="footnote">
+  Dates, module list and hour estimates mirror the CFA_L1_L2_Study_Plan workbook. Module names follow the
+  2025/2026 curriculum — CFA Institute revises these annually, so check them against your exam-year reading
+  list. Exam weights are CFA Institute's published ranges; confirm them for your exam year. Hour estimates
+  are a starting point, not a rule.
+</p>
+</main>
+
+<button class="fab" onclick="openLog()">Log a session</button>
+
+<dialog id="logDlg"><form method="dialog" class="card" onsubmit="return false">
+  <h3 id="lgTitle">Log a session</h3>
+  <p class="ctx" id="lgCtx"></p>
+  <p class="ctx" id="lgCtx2"></p>
+
+  <label for="lgMod">Learning module</label>
+  <div class="seg amber" id="lgLevel" style="margin-bottom:8px">
+    <button type="button" aria-pressed="true" onclick="lgSetLevel('L1')">Level I</button>
+    <button type="button" aria-pressed="false" onclick="lgSetLevel('L2')">Level II</button>
+  </div>
+  <select id="lgMod" onchange="lgModChanged()"></select>
+
+  <label>Where this module stands</label>
+  <div class="seg v5" id="lgStatus">
+    <button type="button" onclick="lgSetStatus(0)">Not started</button>
+    <button type="button" onclick="lgSetStatus(1)">Started</button>
+    <button type="button" onclick="lgSetStatus(2)">Read</button>
+    <button type="button" onclick="lgSetStatus(3)">Practised</button>
+    <button type="button" onclick="lgSetStatus(4)">Finished</button>
+  </div>
+
+  <label for="lgModNote">Note on this module (weak points, formulas)</label>
+  <textarea id="lgModNote" oninput="saveModNote()" placeholder="Stays attached to the module."></textarea>
+
+  <label for="lgHrs">Hours in this session</label>
+  <div class="stepper">
+    <button type="button" onclick="bump(-0.5)" aria-label="Half an hour less">−</button>
+    <input type="number" id="lgHrs" value="1.5" step="0.25" min="0" max="18" inputmode="decimal">
+    <button type="button" onclick="bump(0.5)" aria-label="Half an hour more">+</button>
+  </div>
+
+  <label>What you did</label>
+  <div class="seg" id="lgAct">
+    <button type="button" data-act="Reading" aria-pressed="true" onclick="lgSetAct('Reading')">Reading</button>
+    <button type="button" data-act="Practice Qs" aria-pressed="false" onclick="lgSetAct('Practice Qs')">Practice</button>
+    <button type="button" data-act="Revision" aria-pressed="false" onclick="lgSetAct('Revision')">Revision</button>
+    <button type="button" data-act="Mock Exam" aria-pressed="false" onclick="lgSetAct('Mock Exam')">Mock</button>
+  </div>
+
+  <label for="lgDate">Date</label>
+  <input type="date" id="lgDate">
+  <label for="lgNote">Note on this session (optional)</label>
+  <textarea id="lgNote" placeholder="What you covered."></textarea>
+
+  <div class="dlgRow">
+    <button type="button" class="btn" onclick="closeLog()">Done</button>
+    <button type="button" class="btn primary" onclick="saveLog()">Save session</button>
+  </div>
+  <p class="hint" id="lgHint">Status and module notes save as you change them. “Save session” adds the hours.</p>
+</form></dialog>
+
+<script>
+const DATA = {"cfg":{"l1s":"2026-11-23","l1c":"2027-01-31","l1x":"2027-02-20","l2s":"2027-03-01","l2c":"2027-08-31","l2x":"2027-11-19","w":0.5,"tol":0.1},"topics":["Ethical & Professional Standards","Quantitative Methods","Economics","Financial Statement Analysis","Corporate Issuers","Equity Investments","Fixed Income","Derivatives","Alternative Investments","Portfolio Management","Revision & Mock Exams"],"weights":{"L1":{"Ethical & Professional Standards":"15-20%","Quantitative Methods":"6-9%","Economics":"6-9%","Financial Statement Analysis":"11-14%","Corporate Issuers":"6-9%","Equity Investments":"11-14%","Fixed Income":"11-14%","Derivatives":"5-8%","Alternative Investments":"7-10%","Portfolio Management":"8-12%","Revision & Mock Exams":"-"},"L2":{"Ethical & Professional Standards":"10-15%","Quantitative Methods":"5-10%","Economics":"5-10%","Financial Statement Analysis":"10-15%","Corporate Issuers":"5-10%","Equity Investments":"10-15%","Fixed Income":"10-15%","Derivatives":"5-10%","Alternative Investments":"5-10%","Portfolio Management":"10-15%","Revision & Mock Exams":"-"}},"mods":{"L1":[{"t":"Ethical & Professional Standards","m":"Ethics and Trust in the Investment Profession","h":3,"p":"C"},{"t":"Ethical & Professional Standards","m":"Code of Ethics and Standards of Professional Conduct","h":3,"p":"C"},{"t":"Ethical & Professional Standards","m":"Guidance for Standards I-VII","h":9,"p":"C"},{"t":"Ethical & Professional Standards","m":"Introduction to the Global Investment Performance Standards (GIPS)","h":3,"p":"C"},{"t":"Ethical & Professional Standards","m":"Ethics Application","h":4,"p":"C"},{"t":"Quantitative Methods","m":"Rates and Returns","h":3,"p":"C"},{"t":"Quantitative Methods","m":"Time Value of Money in Finance","h":3,"p":"C"},{"t":"Quantitative Methods","m":"Statistical Measures of Asset Returns","h":2.5,"p":"C"},{"t":"Quantitative Methods","m":"Probability Trees and Conditional Expectations","h":2.5,"p":"C"},{"t":"Quantitative Methods","m":"Portfolio Mathematics","h":2.5,"p":"C"},{"t":"Quantitative Methods","m":"Simulation Methods","h":2,"p":"C"},{"t":"Quantitative Methods","m":"Estimation and Inference","h":2.5,"p":"C"},{"t":"Quantitative Methods","m":"Hypothesis Testing","h":4,"p":"C"},{"t":"Quantitative Methods","m":"Parametric and Non-Parametric Tests of Independence","h":2,"p":"C"},{"t":"Quantitative Methods","m":"Simple Linear Regression","h":4,"p":"C"},{"t":"Quantitative Methods","m":"Introduction to Big Data Techniques","h":2,"p":"C"},{"t":"Economics","m":"The Firm and Market Structures","h":3,"p":"C"},{"t":"Economics","m":"Understanding Business Cycles","h":2.5,"p":"C"},{"t":"Economics","m":"Fiscal Policy","h":3,"p":"C"},{"t":"Economics","m":"Monetary Policy","h":3,"p":"C"},{"t":"Economics","m":"Introduction to Geopolitics","h":2,"p":"C"},{"t":"Economics","m":"International Trade","h":3,"p":"C"},{"t":"Economics","m":"Capital Flows and the FX Market","h":3,"p":"C"},{"t":"Economics","m":"Exchange Rate Calculations","h":2.5,"p":"C"},{"t":"Financial Statement Analysis","m":"Introduction to Financial Statement Analysis","h":3,"p":"C"},{"t":"Financial Statement Analysis","m":"Analyzing Income Statements","h":4,"p":"C"},{"t":"Financial Statement Analysis","m":"Analyzing Balance Sheets","h":3.5,"p":"C"},{"t":"Financial Statement Analysis","m":"Analyzing Statements of Cash Flows I","h":3.5,"p":"C"},{"t":"Financial Statement Analysis","m":"Analyzing Statements of Cash Flows II","h":3,"p":"C"},{"t":"Financial Statement Analysis","m":"Analysis of Inventories","h":4,"p":"C"},{"t":"Financial Statement Analysis","m":"Analysis of Long-Term Assets","h":4,"p":"C"},{"t":"Financial Statement Analysis","m":"Topics in Long-Term Liabilities and Equity","h":4,"p":"C"},{"t":"Financial Statement Analysis","m":"Analysis of Income Taxes","h":4,"p":"C"},{"t":"Financial Statement Analysis","m":"Financial Reporting Quality","h":3,"p":"C"},{"t":"Financial Statement Analysis","m":"Financial Analysis Techniques","h":3.5,"p":"C"},{"t":"Financial Statement Analysis","m":"Introduction to Financial Statement Modeling","h":2.5,"p":"C"},{"t":"Corporate Issuers","m":"Organizational Forms, Corporate Issuer Features, and Ownership","h":2,"p":"C"},{"t":"Corporate Issuers","m":"Investors and Other Stakeholders","h":2,"p":"C"},{"t":"Corporate Issuers","m":"Corporate Governance: Conflicts, Mechanisms, Risks, and Benefits","h":2.5,"p":"C"},{"t":"Corporate Issuers","m":"Working Capital and Liquidity","h":3,"p":"C"},{"t":"Corporate Issuers","m":"Capital Investments and Capital Allocation","h":3.5,"p":"C"},{"t":"Corporate Issuers","m":"Capital Structure","h":3,"p":"C"},{"t":"Corporate Issuers","m":"Business Models","h":2,"p":"C"},{"t":"Equity Investments","m":"Market Organization and Structure","h":3,"p":"C"},{"t":"Equity Investments","m":"Security Market Indexes","h":3,"p":"C"},{"t":"Equity Investments","m":"Market Efficiency","h":2.5,"p":"C"},{"t":"Equity Investments","m":"Overview of Equity Securities","h":2.5,"p":"C"},{"t":"Equity Investments","m":"Company Analysis: Past and Present","h":3,"p":"C"},{"t":"Equity Investments","m":"Industry and Competitive Analysis","h":3.5,"p":"C"},{"t":"Equity Investments","m":"Company Analysis: Forecasting","h":3,"p":"C"},{"t":"Equity Investments","m":"Equity Valuation: Concepts and Basic Tools","h":5.5,"p":"C"},{"t":"Fixed Income","m":"Fixed-Income Instrument Features","h":2,"p":"C"},{"t":"Fixed Income","m":"Fixed-Income Cash Flows and Types","h":2,"p":"C"},{"t":"Fixed Income","m":"Fixed-Income Issuance and Trading","h":2,"p":"C"},{"t":"Fixed Income","m":"Fixed-Income Markets for Corporate Issuers","h":2,"p":"C"},{"t":"Fixed Income","m":"Fixed-Income Markets for Government Issuers","h":1.5,"p":"C"},{"t":"Fixed Income","m":"Fixed-Income Bond Valuation: Prices and Yields","h":3.5,"p":"C"},{"t":"Fixed Income","m":"Yield and Yield Spread Measures for Fixed-Rate Bonds","h":3,"p":"C"},{"t":"Fixed Income","m":"Yield and Yield Spread Measures for Floating-Rate Instruments","h":2,"p":"C"},{"t":"Fixed Income","m":"The Term Structure of Interest Rates: Spot, Par, and Forward Curves","h":3.5,"p":"C"},{"t":"Fixed Income","m":"Interest Rate Risk and Return","h":2,"p":"C"},{"t":"Fixed Income","m":"Yield-Based Bond Duration Measures and Properties","h":3,"p":"C"},{"t":"Fixed Income","m":"Yield-Based Bond Convexity and Portfolio Properties","h":3,"p":"C"},{"t":"Fixed Income","m":"Curve-Based and Empirical Fixed-Income Risk Measures","h":2.5,"p":"C"},{"t":"Fixed Income","m":"Credit Risk","h":2,"p":"C"},{"t":"Fixed Income","m":"Credit Analysis for Government Issuers","h":2,"p":"C"},{"t":"Fixed Income","m":"Credit Analysis for Corporate Issuers","h":2.5,"p":"C"},{"t":"Fixed Income","m":"Fixed-Income Securitization","h":2,"p":"C"},{"t":"Fixed Income","m":"Asset-Backed Security (ABS) Instrument and Market Features","h":2.5,"p":"C"},{"t":"Fixed Income","m":"Mortgage-Backed Security (MBS) Instrument and Market Features","h":3,"p":"C"},{"t":"Derivatives","m":"Derivative Instrument and Derivative Market Features","h":2,"p":"C"},{"t":"Derivatives","m":"Forward Commitment and Contingent Claim Features and Instruments","h":2,"p":"C"},{"t":"Derivatives","m":"Derivative Benefits, Risks, and Issuer and Investor Uses","h":2,"p":"C"},{"t":"Derivatives","m":"Arbitrage, Replication, and the Cost of Carry in Pricing Derivatives","h":2.5,"p":"C"},{"t":"Derivatives","m":"Pricing and Valuation of Forward Contracts","h":2.5,"p":"C"},{"t":"Derivatives","m":"Pricing and Valuation of Futures Contracts","h":2.5,"p":"C"},{"t":"Derivatives","m":"Pricing and Valuation of Interest Rate and Other Swaps","h":2.5,"p":"C"},{"t":"Derivatives","m":"Pricing and Valuation of Options","h":3,"p":"C"},{"t":"Derivatives","m":"Option Replication Using Put-Call Parity","h":2.5,"p":"C"},{"t":"Derivatives","m":"Valuing a Derivative Using a One-Period Binomial Model","h":2.5,"p":"C"},{"t":"Alternative Investments","m":"Alternative Investment Features, Methods, and Structures","h":2.5,"p":"C"},{"t":"Alternative Investments","m":"Alternative Investment Performance and Returns","h":3,"p":"C"},{"t":"Alternative Investments","m":"Investments in Private Capital: Equity and Debt","h":2.5,"p":"C"},{"t":"Alternative Investments","m":"Real Estate and Infrastructure","h":3,"p":"C"},{"t":"Alternative Investments","m":"Natural Resources","h":2,"p":"C"},{"t":"Alternative Investments","m":"Hedge Funds","h":2.5,"p":"C"},{"t":"Alternative Investments","m":"Introduction to Digital Assets","h":2.5,"p":"C"},{"t":"Portfolio Management","m":"Portfolio Risk and Return: Part I","h":4,"p":"C"},{"t":"Portfolio Management","m":"Portfolio Risk and Return: Part II","h":4.5,"p":"C"},{"t":"Portfolio Management","m":"Portfolio Management: An Overview","h":2.5,"p":"C"},{"t":"Portfolio Management","m":"Basics of Portfolio Planning and Construction","h":3,"p":"C"},{"t":"Portfolio Management","m":"The Behavioral Biases of Individuals","h":3,"p":"C"},{"t":"Portfolio Management","m":"Introduction to Risk Management","h":3,"p":"C"},{"t":"Revision & Mock Exams","m":"Ethics full re-read + Standards drills","h":8,"p":"R"},{"t":"Revision & Mock Exams","m":"Build formula sheet & flashcards (all topics)","h":6,"p":"R"},{"t":"Revision & Mock Exams","m":"Weak-area drills: Quant / FSA / Derivatives","h":8,"p":"R"},{"t":"Revision & Mock Exams","m":"Mock Exam 1 + full review","h":9,"p":"R"},{"t":"Revision & Mock Exams","m":"Mock Exam 2 + full review","h":9,"p":"R"},{"t":"Revision & Mock Exams","m":"Mock Exam 3 + full review","h":9,"p":"R"},{"t":"Revision & Mock Exams","m":"Mock Exam 4 + full review","h":9,"p":"R"},{"t":"Revision & Mock Exams","m":"Mock Exam 5 + full review","h":9,"p":"R"},{"t":"Revision & Mock Exams","m":"Final skim of all LM summaries (last 48 hrs)","h":5,"p":"R"}],"L2":[{"t":"Ethical & Professional Standards","m":"Code of Ethics and Standards of Professional Conduct (L2)","h":4,"p":"C"},{"t":"Ethical & Professional Standards","m":"Guidance for Standards I-VII (L2)","h":8,"p":"C"},{"t":"Ethical & Professional Standards","m":"Application of the Code and Standards: Level II","h":5,"p":"C"},{"t":"Ethical & Professional Standards","m":"Global Investment Performance Standards (GIPS) for Firms","h":3,"p":"C"},{"t":"Quantitative Methods","m":"Basics of Multiple Regression and Underlying Assumptions","h":5,"p":"C"},{"t":"Quantitative Methods","m":"Evaluating Regression Model Fit and Interpreting Model Results","h":5,"p":"C"},{"t":"Quantitative Methods","m":"Model Misspecification","h":4,"p":"C"},{"t":"Quantitative Methods","m":"Extensions of Multiple Regression","h":5,"p":"C"},{"t":"Quantitative Methods","m":"Time-Series Analysis","h":7,"p":"C"},{"t":"Quantitative Methods","m":"Machine Learning","h":4,"p":"C"},{"t":"Quantitative Methods","m":"Big Data Projects","h":4,"p":"C"},{"t":"Economics","m":"Currency Exchange Rates: Understanding Equilibrium Value","h":8,"p":"C"},{"t":"Economics","m":"Economic Growth","h":5,"p":"C"},{"t":"Economics","m":"Economics of Regulation","h":5,"p":"C"},{"t":"Financial Statement Analysis","m":"Intercorporate Investments","h":9,"p":"C"},{"t":"Financial Statement Analysis","m":"Employee Compensation: Post-Employment and Share-Based","h":8,"p":"C"},{"t":"Financial Statement Analysis","m":"Multinational Operations","h":9,"p":"C"},{"t":"Financial Statement Analysis","m":"Analysis of Financial Institutions","h":7,"p":"C"},{"t":"Financial Statement Analysis","m":"Evaluating Quality of Financial Reports","h":7,"p":"C"},{"t":"Financial Statement Analysis","m":"Integration of Financial Statement Analysis Techniques","h":6,"p":"C"},{"t":"Corporate Issuers","m":"Analysis of Dividends and Share Repurchases","h":7,"p":"C"},{"t":"Corporate Issuers","m":"ESG Considerations in Investment Analysis","h":5,"p":"C"},{"t":"Corporate Issuers","m":"Cost of Capital: Advanced Topics","h":6,"p":"C"},{"t":"Corporate Issuers","m":"Corporate Restructuring","h":6,"p":"C"},{"t":"Equity Investments","m":"Equity Valuation: Applications and Processes","h":6,"p":"C"},{"t":"Equity Investments","m":"Discounted Dividend Valuation","h":10,"p":"C"},{"t":"Equity Investments","m":"Free Cash Flow Valuation","h":11,"p":"C"},{"t":"Equity Investments","m":"Market-Based Valuation: Price and Enterprise Value Multiples","h":9,"p":"C"},{"t":"Equity Investments","m":"Residual Income Valuation","h":7,"p":"C"},{"t":"Equity Investments","m":"Private Company Valuation","h":5,"p":"C"},{"t":"Fixed Income","m":"The Term Structure and Interest Rate Dynamics","h":9,"p":"C"},{"t":"Fixed Income","m":"The Arbitrage-Free Valuation Framework","h":7,"p":"C"},{"t":"Fixed Income","m":"Valuation and Analysis of Bonds with Embedded Options","h":10,"p":"C"},{"t":"Fixed Income","m":"Credit Analysis Models","h":7,"p":"C"},{"t":"Fixed Income","m":"Credit Default Swaps","h":5,"p":"C"},{"t":"Fixed Income","m":"Fixed-Income Active Management: Yield Curve Strategies","h":6,"p":"C"},{"t":"Fixed Income","m":"Fixed-Income Active Management: Credit Strategies","h":4,"p":"C"},{"t":"Derivatives","m":"Pricing and Valuation of Forward Commitments","h":10,"p":"C"},{"t":"Derivatives","m":"Valuation of Contingent Claims","h":10,"p":"C"},{"t":"Derivatives","m":"Swaps, Forwards, and Futures Strategies","h":6,"p":"C"},{"t":"Derivatives","m":"Currency Management: An Introduction","h":4,"p":"C"},{"t":"Alternative Investments","m":"Introduction to Commodities and Commodity Derivatives","h":5,"p":"C"},{"t":"Alternative Investments","m":"Overview of Types of Real Estate Investment","h":4,"p":"C"},{"t":"Alternative Investments","m":"Investments in Real Estate Through Publicly Traded Securities","h":4,"p":"C"},{"t":"Alternative Investments","m":"Private Real Estate Investments","h":4,"p":"C"},{"t":"Alternative Investments","m":"Hedge Fund Strategies","h":5,"p":"C"},{"t":"Alternative Investments","m":"Private Equity and Private Debt Investments","h":5,"p":"C"},{"t":"Alternative Investments","m":"Digital Assets and Decentralised Finance","h":3,"p":"C"},{"t":"Portfolio Management","m":"Economics and Investment Markets","h":6,"p":"C"},{"t":"Portfolio Management","m":"Analysis of Active Portfolio Management","h":8,"p":"C"},{"t":"Portfolio Management","m":"Exchange-Traded Funds: Mechanics and Applications","h":6,"p":"C"},{"t":"Portfolio Management","m":"Using Multifactor Models","h":8,"p":"C"},{"t":"Portfolio Management","m":"Measuring and Managing Market Risk","h":8,"p":"C"},{"t":"Portfolio Management","m":"Backtesting and Simulation","h":6,"p":"C"},{"t":"Revision & Mock Exams","m":"Ethics re-read + L2 ethics vignettes","h":10,"p":"R"},{"t":"Revision & Mock Exams","m":"Formula / derivation sheet for all topics","h":6,"p":"R"},{"t":"Revision & Mock Exams","m":"Item-set drills: Equity + FSA","h":10,"p":"R"},{"t":"Revision & Mock Exams","m":"Item-set drills: Fixed Income + Derivatives","h":10,"p":"R"},{"t":"Revision & Mock Exams","m":"Item-set drills: PM + Quant + Alternatives","h":10,"p":"R"},{"t":"Revision & Mock Exams","m":"Mock Exam 1 + full review","h":9,"p":"R"},{"t":"Revision & Mock Exams","m":"Mock Exam 2 + full review","h":9,"p":"R"},{"t":"Revision & Mock Exams","m":"Mock Exam 3 + full review","h":9,"p":"R"},{"t":"Revision & Mock Exams","m":"Mock Exam 4 + full review","h":9,"p":"R"},{"t":"Revision & Mock Exams","m":"Mock Exam 5 + full review","h":9,"p":"R"},{"t":"Revision & Mock Exams","m":"Final skim of all LM summaries (last 48 hrs)","h":5,"p":"R"}]}};
+const KEY = "cfa-record-v2";
+const STATUS_PCT = [0,.25,.5,.8,1];
+const STATUS_NAME = ["Not started","Started","Read","Practised","Finished"];
+const MONTH = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const DAY = 86400000;
+const ACTS = ["Reading","Practice Qs","Revision","Mock Exam"];
+const DATE_FIELDS = [
+  ["l1s","Level I study starts"],
+  ["l1c","Level I curriculum done by"],
+  ["l1x","Level I exam"],
+  ["l2s","Level II study starts"],
+  ["l2c","Level II curriculum done by"],
+  ["l2x","Level II exam"],
+];
+
+let store = {status:{}, notes:{}, sessions:[], cfg:{}, lastBackup:null};
+let storageOK = true;
+let view = {level:"L1", filter:"all"};
+let lg = {level:"L1", act:"Reading"};
+let S = {L1:[], L2:[]};
+
+/* ---------- storage ---------- */
+function load(){
+  try{
+    const raw = localStorage.getItem(KEY) || localStorage.getItem("cfa-record-v1");
+    if(raw) store = Object.assign(store, JSON.parse(raw));
+    if(!store.notes) store.notes = {};
+    if(!store.cfg) store.cfg = {};
+    localStorage.setItem(KEY+"-probe","1"); localStorage.removeItem(KEY+"-probe");
+  }catch(e){ storageOK = false; }
+  document.getElementById("storeWarn").classList.toggle("on", !storageOK);
+}
+function save(){
+  if(!storageOK) return;
+  try{ localStorage.setItem(KEY, JSON.stringify(store)); }
+  catch(e){ storageOK=false; document.getElementById("storeWarn").classList.add("on"); }
+}
+
+/* ---------- dates ---------- */
+function d(s){ const [y,m,dd]=s.split("-").map(Number); return new Date(y,m-1,dd); }
+function todayD(){ const n=new Date(); return new Date(n.getFullYear(),n.getMonth(),n.getDate()); }
+function iso(x){ return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0"); }
+function days(a,b){ return Math.round((b-a)/DAY); }
+function fmtShort(s){ const x=(typeof s==="string")?d(s):s; return x.getDate()+" "+MONTH[x.getMonth()]; }
+function fmtMY(x){ return MONTH[x.getMonth()]+" "+String(x.getFullYear()).slice(2); }
+function fmtLong(x){ return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][x.getDay()]+" "+x.getDate()+" "+MONTH[x.getMonth()]+" "+x.getFullYear(); }
+function esc(s){ return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+/* ---------- config + schedule ---------- */
+function cfg(){ return Object.assign({}, DATA.cfg, store.cfg); }
+function W(){ const v=cfg().w; return (typeof v==="number")?v:0.5; }
+function TOL(){ const v=cfg().tol; return (typeof v==="number")?v:0.10; }
+function rebuild(){
+  const c = cfg();
+  ["L1","L2"].forEach(lv=>{
+    const a0=d(lv==="L1"?c.l1s:c.l2s), a1=d(lv==="L1"?c.l1c:c.l2c), a2=d(lv==="L1"?c.l1x:c.l2x);
+    const defs = DATA.mods[lv], out=[];
+    [["C",a0,a1],["R",a1,a2]].forEach(([ph,b0,b1])=>{
+      const blk = defs.filter(m=>m.p===ph);
+      const tot = blk.reduce((x,m)=>x+m.h,0) || 1;
+      const span = Math.max(1, days(b0,b1));
+      let cum=0, prev=b0;
+      blk.forEach(m=>{
+        cum += m.h;
+        const e = new Date(b0.getTime() + Math.round(cum/tot*span)*DAY);
+        out.push({t:m.t, m:m.m, h:m.h, p:ph, s:prev, e:e});
+        prev = e;
+      });
+    });
+    S[lv] = out;
+  });
+}
+
+/* ---------- derived ---------- */
+function key(lv,i){ return lv+"|"+i; }
+function st(lv,i){ return store.status[key(lv,i)] || 0; }
+function note(lv,i){ return store.notes[key(lv,i)] || ""; }
+function loggedFor(lv,i){
+  const nm = S[lv][i].m; let h=0;
+  for(const x of store.sessions) if(x.lvl===lv && x.mod===nm) h+=x.hrs;
+  return h;
+}
+function progress(lv,i){
+  const m=S[lv][i], s=st(lv,i);
+  if(s===4) return 1;
+  const hp = m.h>0 ? Math.min(1, loggedFor(lv,i)/m.h) : 0;
+  return W()*hp + (1-W())*STATUS_PCT[s];
+}
+function expected(lv,i){
+  const m=S[lv][i], t=todayD();
+  if(t<=m.s) return 0;
+  if(t>=m.e) return 1;
+  return days(m.s,t)/Math.max(1, days(m.s,m.e));
+}
+function flagOf(pr, ex){
+  if(pr>=1) return "Done";
+  if(ex<=0) return "Upcoming";
+  return pr >= ex - TOL() ? "On track" : "Behind";
+}
+function modFlag(lv,i){ return flagOf(progress(lv,i), expected(lv,i)); }
+function overdue(lv,i){ return st(lv,i)<4 && S[lv][i].e < todayD(); }
+function levelTotals(lv){
+  const ms=S[lv]; let planned=0,logged=0,wp=0,we=0,done=0,od=0,behind=0;
+  ms.forEach((m,i)=>{
+    planned+=m.h; logged+=loggedFor(lv,i);
+    wp+=progress(lv,i)*m.h; we+=expected(lv,i)*m.h;
+    if(st(lv,i)===4) done++;
+    if(overdue(lv,i)) od++;
+    if(modFlag(lv,i)==="Behind") behind++;
+  });
+  return {planned,logged,done,od,behind,n:ms.length,
+          prog:planned?wp/planned:0, exp:planned?we/planned:0};
+}
+function topicRows(lv){
+  return DATA.topics.map(tp=>{
+    const all = S[lv].map((m,i)=>[m,i]).filter(([m])=>m.t===tp);
+    if(!all.length) return null;
+    const planned=all.reduce((a,[m])=>a+m.h,0);
+    const logged=all.reduce((a,[m,i])=>a+loggedFor(lv,i),0);
+    const pr=all.reduce((a,[m,i])=>a+progress(lv,i)*m.h,0)/planned;
+    const ex=all.reduce((a,[m,i])=>a+expected(lv,i)*m.h,0)/planned;
+    return {tp, all, planned, logged, pr, ex,
+      done: all.filter(([m,i])=>st(lv,i)===4).length,
+      od: all.filter(([m,i])=>overdue(lv,i)).length,
+      first: all[0][0].s, last: all[all.length-1][0].e,
+      flag: flagOf(pr,ex)};
+  }).filter(Boolean);
+}
+function contentRemaining(lv){
+  let h=0; S[lv].forEach((m,i)=>{ if(m.p==="C") h+=m.h*(1-progress(lv,i)); });
+  return h;
+}
+function phase(){
+  const c=cfg(), t=todayD();
+  if(t<=d(c.l1c)) return {lv:"L1",name:"Level I curriculum",due:d(c.l1c),kind:"content"};
+  if(t<=d(c.l1x)) return {lv:"L1",name:"Level I revision",due:d(c.l1x),kind:"rev"};
+  if(t<=d(c.l2c)) return {lv:"L2",name:"Level II curriculum",due:d(c.l2c),kind:"content"};
+  if(t<=d(c.l2x)) return {lv:"L2",name:"Level II revision",due:d(c.l2x),kind:"rev"};
+  return {lv:"L2",name:"",due:d(c.l2x),kind:"done"};
+}
+function hoursOn(k){ return store.sessions.filter(s=>s.d===k).reduce((a,s)=>a+s.hrs,0); }
+function hoursBetween(a,b){
+  return store.sessions.filter(s=>{ const x=d(s.d); return x>=a && x<=b; }).reduce((a2,s)=>a2+s.hrs,0);
+}
+function streak(){
+  let n=0, cur=todayD();
+  if(hoursOn(iso(cur))===0) cur=new Date(cur-DAY);
+  while(hoursOn(iso(cur))>0){ n++; cur=new Date(cur-DAY); }
+  return n;
+}
+function flagHTML(f){
+  const cls = f==="Behind"?"f-Behind":f==="On track"?"f-On":f==="Done"?"f-Done":"f-Up";
+  return '<span class="flag '+cls+'">'+f+'</span>';
+}
+
+/* ---------- today ---------- */
+function renderToday(){
+  const ph=phase(), t=todayD(), c=cfg();
+  document.getElementById("todayDate").textContent = fmtLong(t);
+  let num,line,meta,vtxt,vcls;
+  if(ph.kind==="done"){
+    num="—"; line="Both exams are behind you."; meta=""; vtxt="Finished"; vcls="v-done";
+  }else{
+    const left=Math.max(1, days(t,ph.due)+1);
+    const tt=levelTotals(ph.lv);
+    const rem = ph.kind==="content" ? contentRemaining(ph.lv) : Math.max(0, tt.planned-tt.logged);
+    const perDay = rem/left;
+    num = perDay.toFixed(1);
+    line = ph.name+" — "+rem.toFixed(0)+" hours left over "+left+" days";
+    meta = "Target "+fmtLong(ph.due)+".";
+    if(tt.behind>0){ vtxt=tt.behind+" module"+(tt.behind>1?"s":"")+" behind schedule"; vcls="v-behind"; }
+    else { vtxt = perDay<=3.5 ? "Comfortable pace" : "On target"; vcls="v-ok"; }
+  }
+  document.getElementById("heroNum").innerHTML = num==="—" ? "—" :
+    num.replace(/^(\d+)\.(\d)$/,'$1<small>.$2</small>');
+  document.getElementById("heroLine").textContent=line;
+  document.getElementById("heroMeta").textContent=meta;
+  document.getElementById("verdictText").textContent=vtxt;
+  document.getElementById("heroVerdict").className="verdict "+vcls;
+
+  // ribbon
+  const lv=ph.lv, ms=S[lv], rib=document.getElementById("ribbon");
+  rib.innerHTML="";
+  ms.forEach((m,i)=>{
+    const s=st(lv,i), e=document.createElement("div");
+    e.className = (modFlag(lv,i)==="Behind") ? "tick od"+(m.p==="R"?" rev":"")
+                                             : "tick p"+s+(m.p==="R"?" rev":"");
+    e.title = m.m+" — "+STATUS_NAME[s]+" · due "+fmtShort(m.e);
+    rib.appendChild(e);
+  });
+  const a=ms[0].s, b=ms[ms.length-1].e;
+  const frac=Math.min(1,Math.max(0,days(a,t)/Math.max(1,days(a,b))));
+  const nm=document.createElement("div");
+  nm.className="nowmark"; nm.style.left="calc("+(frac*100).toFixed(2)+"% - 1px)";
+  rib.appendChild(nm);
+  document.getElementById("ribScale").innerHTML =
+    "<span>"+fmtShort(a)+"</span><span>one bar = one module · "+
+    (lv==="L1"?"Level I":"Level II")+"</span><span>"+fmtShort(b)+"</span>";
+
+  // strip
+  const a1=levelTotals("L1"), a2=levelTotals("L2");
+  let wk=0; for(let i=0;i<7;i++) wk+=hoursOn(iso(new Date(t-i*DAY)));
+  const behind=a1.behind+a2.behind;
+  const overall=(a1.prog*a1.planned+a2.prog*a2.planned)/(a1.planned+a2.planned);
+  const cells=[
+    [hoursOn(iso(t)).toFixed(1),"hours today",0],
+    [wk.toFixed(1),"hours this week",0],
+    [streak()+"","day streak",0],
+    [Math.round(overall*100)+"%","overall progress",0],
+    [a1.done+"/"+a1.n,"Level I modules done",0],
+    [Math.round(a1.prog*100)+"%","Level I progress",0],
+    [Math.round(a2.prog*100)+"%","Level II progress",0],
+    [behind+"","modules behind",behind>0?1:0],
+  ];
+  document.getElementById("strip").innerHTML = cells.map(x=>
+    '<div class="stat'+(x[2]?' hot':'')+'"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>').join("");
+
+  // pace box
+  const tt=levelTotals(ph.lv);
+  const weeksLeft = Math.max(0, days(t, ph.due)/7);
+  const remAll = Math.max(0, tt.planned - tt.logged);
+  const origWeeks = Math.max(0.1, days(d(ph.lv==="L1"?c.l1s:c.l2s), d(ph.lv==="L1"?c.l1x:c.l2x))/7);
+  const curRem = contentRemaining(ph.lv);
+  const curWeeks = Math.max(0.1, days(t, d(ph.lv==="L1"?c.l1c:c.l2c))/7);
+  const openTargets = S[ph.lv].map((m,i)=>st(ph.lv,i)<4?m.e:null).filter(Boolean);
+  const pace=[
+    ["Current phase", ph.kind==="done"?"Finished":ph.name, "now"],
+    ["Hours remaining in this level", remAll.toFixed(1), ""],
+    ["Weeks to that exam", weeksLeft.toFixed(1), ""],
+    ["Needed from today", (weeksLeft>0?(remAll/weeksLeft):0).toFixed(1)+" hrs/wk", ""],
+    ["Original plan pace", (tt.planned/origWeeks).toFixed(1)+" hrs/wk", ""],
+    ["To finish the curriculum on time", (curWeeks>0?(curRem/curWeeks):0).toFixed(1)+" hrs/wk", ""],
+    ["Hours in the last 7 days", wk.toFixed(1), ""],
+    ["Modules past their target date", String(tt.od), tt.od>0?"hot":""],
+    ["Earliest target still open", openTargets.length?fmtShort(new Date(Math.min.apply(null,openTargets))):"—", ""],
+  ];
+  document.getElementById("paceBox").innerHTML = pace.map(p=>
+    '<div class="kv '+p[2]+'"><span>'+p[0]+'</span><b>'+esc(p[1])+'</b></div>').join("");
+
+  // status counts
+  let sb = '<div class="kv"><span>&nbsp;</span><b style="min-width:56px;text-align:right;color:var(--dim);font-weight:500">L1</b><b style="min-width:56px;text-align:right;color:var(--dim);font-weight:500">L2</b></div>';
+  STATUS_NAME.forEach((n,k)=>{
+    const c1=S.L1.filter((m,i)=>st("L1",i)===k).length;
+    const c2=S.L2.filter((m,i)=>st("L2",i)===k).length;
+    sb += '<div class="kv"><span>'+n+'</span><b style="min-width:56px;text-align:right">'+c1+
+          '</b><b style="min-width:56px;text-align:right">'+c2+'</b></div>';
+  });
+  sb += '<div class="kv'+(behind?' hot':'')+'"><span>Behind schedule</span><b style="min-width:56px;text-align:right">'+
+        a1.behind+'</b><b style="min-width:56px;text-align:right">'+a2.behind+'</b></div>';
+  document.getElementById("statusBox").innerHTML = sb;
+
+  // milestones
+  const miles = DATE_FIELDS.map(([k,lbl])=>[lbl, d(c[k])]);
+  document.getElementById("mileBox").innerHTML = miles.map(([lbl,dt2])=>{
+    const past = dt2 < t;
+    return '<div class="kv"><span style="'+(past?'opacity:.5':'')+'">'+lbl+'</span><b style="'+
+      (past?'opacity:.5':'')+'">'+fmtShort(dt2)+" '"+String(dt2.getFullYear()).slice(2)+'</b></div>';
+  }).join("");
+
+  // due now
+  const due=[];
+  ["L1","L2"].forEach(l=>S[l].forEach((m,i)=>{ if(st(l,i)<4 && m.s<=t) due.push({l,i,e:m.e}); }));
+  due.sort((x,y)=>x.e-y.e);
+  document.getElementById("dueList").innerHTML = due.length
+    ? '<div class="list">'+due.slice(0,12).map(x=>rowHTML(x.l,x.i)).join("")+'</div>'
+    : '<p class="empty">Nothing open yet. The first module window opens '+fmtShort(S.L1[0].s)+'.</p>';
+
+  renderSessions("todaySessions", store.sessions.filter(s=>s.d===iso(t)),
+                 "No hours logged today. Tap “Log a session” when you finish a block.");
+}
+
+/* ---------- module rows ---------- */
+function rowHTML(lv,i){
+  const m=S[lv][i], s=st(lv,i), lgd=loggedFor(lv,i);
+  const pr=progress(lv,i), ex=expected(lv,i), f=modFlag(lv,i);
+  const nt=note(lv,i);
+  return '<div class="row'+(s===4?" done":"")+(f==="Behind"?" behind":"")+'">'+
+    '<button class="check" data-on="'+(s===4?1:0)+'" onclick="toggleDone(\''+lv+'\','+i+')" aria-label="Mark finished">✓</button>'+
+    '<button class="nameWrap" onclick="openLog(\''+lv+'\','+i+')">'+
+      '<span class="name">'+esc(m.m)+(nt?' <span class="noteDot">•</span>':'')+'</span>'+
+      '<span class="pbar"><i style="width:'+(pr*100).toFixed(1)+'%"></i>'+
+        (ex>0&&ex<1?'<u style="left:calc('+(ex*100).toFixed(1)+'% - 1px)"></u>':'')+'</span>'+
+      '<span class="meta">'+STATUS_NAME[s]+' · '+Math.round(pr*100)+'% done, '+
+        Math.round(ex*100)+'% expected · '+flagHTML(f)+(m.p==="R"?' · revision':'')+'</span>'+
+    '</button>'+
+    '<div class="hrs"><b>'+(lgd?lgd.toFixed(1):"0")+'</b> / '+m.h+'h</div>'+
+    '<div class="when">'+fmtShort(m.e)+'</div></div>';
+}
+function toggleDone(lv,i){
+  const k=key(lv,i);
+  store.status[k] = (store.status[k]===4) ? 0 : 4;
+  save(); renderAll();
+}
+function renderPlan(){
+  const lv=view.level;
+  let html="";
+  topicRows(lv).forEach(r=>{
+    const shown = r.all.filter(([m,i])=>{
+      if(view.filter==="open") return st(lv,i)<4;
+      if(view.filter==="behind") return modFlag(lv,i)==="Behind";
+      if(view.filter==="od") return overdue(lv,i);
+      if(view.filter==="rev") return m.p==="R";
+      return true;
+    });
+    if(!shown.length) return;
+    html += '<div class="topicHead"><h3>'+esc(r.tp)+'</h3><span class="tmeta">'+
+      DATA.weights[lv][r.tp]+' · '+r.all.length+' modules · '+r.logged.toFixed(1)+'/'+r.planned+'h · '+
+      Math.round(r.pr*100)+'% of '+Math.round(r.ex*100)+'% expected · '+flagHTML(r.flag)+'</span></div>'+
+      '<div class="tbar"><i style="width:'+(r.pr*100).toFixed(1)+'%"></i>'+
+      (r.ex>0&&r.ex<1?'<u style="left:calc('+(r.ex*100).toFixed(1)+'% - 1px)"></u>':'')+'</div>'+
+      '<div class="list">'+shown.map(([m,i])=>rowHTML(lv,i)).join("")+'</div>';
+  });
+  document.getElementById("planList").innerHTML = html || '<p class="empty">Nothing matches that filter.</p>';
+}
+
+/* ---------- topics ---------- */
+function renderTopics(){
+  ["L1","L2"].forEach(lv=>{
+    let rows="";
+    topicRows(lv).forEach(r=>{
+      rows += "<tr><td>"+esc(r.tp)+"</td><td>"+DATA.weights[lv][r.tp]+"</td><td>"+
+        r.done+"/"+r.all.length+"</td><td>"+r.logged.toFixed(1)+"</td><td>"+r.planned.toFixed(0)+
+        "</td><td><span class='mini'><i style='width:"+(r.pr*100).toFixed(0)+"%'></i></span>"+
+        Math.round(r.pr*100)+"%</td><td>"+Math.round(r.ex*100)+"%</td><td>"+flagHTML(r.flag)+
+        "</td><td>"+fmtShort(r.first)+"</td><td>"+fmtShort(r.last)+"</td></tr>";
+    });
+    const tt=levelTotals(lv);
+    rows += "<tr class='tot'><td>Total</td><td>—</td><td>"+tt.done+"/"+tt.n+"</td><td>"+
+      tt.logged.toFixed(1)+"</td><td>"+tt.planned.toFixed(0)+"</td><td>"+Math.round(tt.prog*100)+
+      "%</td><td>"+Math.round(tt.exp*100)+"%</td><td>"+flagHTML(flagOf(tt.prog,tt.exp))+
+      "</td><td>"+fmtShort(S[lv][0].s)+"</td><td>"+fmtShort(S[lv][S[lv].length-1].e)+"</td></tr>";
+    document.getElementById(lv==="L1"?"tblL1":"tblL2").innerHTML =
+      "<table><thead><tr><th>Topic</th><th>Weight</th><th>Done</th><th>Logged</th><th>Planned</th>"+
+      "<th>Progress</th><th>Expected</th><th>Flag</th><th>Starts</th><th>Ends</th></tr></thead><tbody>"+
+      rows+"</tbody></table>";
+  });
+}
+
+/* ---------- months ---------- */
+function monthRows(){
+  const c=cfg();
+  let a=d(c.l1s), b=d(c.l2x);
+  const out=[]; let cur=new Date(a.getFullYear(), a.getMonth(), 1);
+  const t=todayD();
+  let cp=0, ca=0;
+  while(cur<=b){
+    const end=new Date(cur.getFullYear(), cur.getMonth()+1, 0);
+    const p1=S.L1.filter((m,i)=>m.e>=cur&&m.e<=end).reduce((x,m)=>x+m.h,0);
+    const p2=S.L2.filter((m,i)=>m.e>=cur&&m.e<=end).reduce((x,m)=>x+m.h,0);
+    const act=hoursBetween(cur,end);
+    cp+=p1+p2; ca+=act;
+    out.push({m:new Date(cur), end, p1, p2, plan:p1+p2, act,
+              varc: (cur>t?0:act-(p1+p2)), cp, ca,
+              now: cur.getFullYear()===t.getFullYear() && cur.getMonth()===t.getMonth()});
+    cur=new Date(cur.getFullYear(), cur.getMonth()+1, 1);
+  }
+  return out;
+}
+function renderMonths(){
+  const rows=monthRows();
+  let html="<table><thead><tr><th>Month</th><th>Focus</th><th>L1 planned</th><th>L2 planned</th>"+
+    "<th>Total planned</th><th>Actual</th><th>Variance</th><th>Cum. planned</th><th>Cum. actual</th>"+
+    "<th>Cum. % of plan</th></tr></thead><tbody>";
+  rows.forEach(r=>{
+    const focus = r.p1>0 ? (r.p2>0?"L1 + L2":"Level I") : (r.p2>0?"Level II":"—");
+    const vcol = r.varc<0 ? "var(--red)" : r.varc>0 ? "var(--green)" : "var(--faint)";
+    html += "<tr"+(r.now?" class='nowrow'":"")+"><td>"+fmtMY(r.m)+"</td><td>"+focus+"</td><td>"+
+      (r.p1?r.p1.toFixed(1):"—")+"</td><td>"+(r.p2?r.p2.toFixed(1):"—")+"</td><td>"+r.plan.toFixed(1)+
+      "</td><td>"+(r.act?r.act.toFixed(1):"—")+"</td><td style='color:"+vcol+"'>"+
+      (r.varc?r.varc.toFixed(1):"—")+"</td><td>"+r.cp.toFixed(0)+"</td><td>"+r.ca.toFixed(0)+
+      "</td><td>"+(r.cp?Math.round(r.ca/r.cp*100):0)+"%</td></tr>";
+  });
+  const tp=rows.reduce((a,r)=>a+r.plan,0), ta=rows.reduce((a,r)=>a+r.act,0);
+  html += "<tr class='tot'><td>Total</td><td>—</td><td>"+
+    rows.reduce((a,r)=>a+r.p1,0).toFixed(0)+"</td><td>"+rows.reduce((a,r)=>a+r.p2,0).toFixed(0)+
+    "</td><td>"+tp.toFixed(0)+"</td><td>"+ta.toFixed(1)+"</td><td>"+(ta-tp).toFixed(1)+
+    "</td><td>"+tp.toFixed(0)+"</td><td>"+ta.toFixed(1)+"</td><td>"+(tp?Math.round(ta/tp*100):0)+
+    "%</td></tr></tbody></table>";
+  document.getElementById("monthTbl").innerHTML = html;
+  drawCum(rows);
+}
+function drawCum(rows){
+  const W2=800, H=230, L=46, R=10, T=12, B=26;
+  const maxY = Math.max(10, rows[rows.length-1].cp);
+  const n = rows.length;
+  const x = k => L + (W2-L-R) * (n>1 ? k/(n-1) : 0);
+  const y = v => T + (H-T-B) * (1 - v/maxY);
+  const t = todayD();
+  let lastIdx = 0;
+  rows.forEach((r,k)=>{ if(r.m<=t) lastIdx=k; });
+  const planPts = rows.map((r,k)=>x(k).toFixed(1)+","+y(r.cp).toFixed(1)).join(" ");
+  const actPts  = rows.slice(0,lastIdx+1).map((r,k)=>x(k).toFixed(1)+","+y(r.ca).toFixed(1)).join(" ");
+  let g="";
+  for(let i=0;i<=4;i++){
+    const v=maxY*i/4, yy=y(v);
+    g += '<line x1="'+L+'" y1="'+yy.toFixed(1)+'" x2="'+(W2-R)+'" y2="'+yy.toFixed(1)+
+         '" stroke="#262C33" stroke-width="1"/>'+
+         '<text x="'+(L-8)+'" y="'+(yy+4).toFixed(1)+'" fill="#5C6670" font-size="11" text-anchor="end">'+
+         Math.round(v)+'</text>';
+  }
+  rows.forEach((r,k)=>{
+    if(n>8 && k%2) return;
+    g += '<text x="'+x(k).toFixed(1)+'" y="'+(H-8)+'" fill="#5C6670" font-size="11" text-anchor="middle">'+
+         fmtMY(r.m)+'</text>';
+  });
+  g += '<line x1="'+x(lastIdx).toFixed(1)+'" y1="'+T+'" x2="'+x(lastIdx).toFixed(1)+'" y2="'+(H-B)+
+       '" stroke="#F0B429" stroke-width="1.5" stroke-dasharray="4 3"/>';
+  g += '<polyline points="'+planPts+'" fill="none" stroke="#49525B" stroke-width="2" stroke-dasharray="6 4"/>';
+  if(actPts) g += '<polyline points="'+actPts+'" fill="none" stroke="#5AC8D8" stroke-width="2.5"/>';
+  rows.slice(0,lastIdx+1).forEach((r,k)=>{
+    g += '<circle cx="'+x(k).toFixed(1)+'" cy="'+y(r.ca).toFixed(1)+'" r="3.5" fill="#5AC8D8"/>';
+  });
+  document.getElementById("cumChart").innerHTML = g;
+}
+
+/* ---------- sessions ---------- */
+function renderProg(){
+  const t=todayD(), vals=[];
+  for(let i=29;i>=0;i--){ const day=new Date(t-i*DAY); vals.push({day,h:hoursOn(iso(day))}); }
+  const mx=Math.max(1,...vals.map(v=>v.h)), avg=vals.reduce((a,v)=>a+v.h,0)/30;
+  document.getElementById("paceSub").textContent =
+    "Averaging "+avg.toFixed(1)+" hours a day over the last 30 days. Tallest bar is "+mx.toFixed(1)+" hours.";
+  document.getElementById("spark").innerHTML = vals.map((v,k)=>
+    '<div class="'+(v.h?(k===29?'today':''):'zero')+'" style="height:'+(v.h/mx*100).toFixed(1)+
+    '%" title="'+fmtShort(iso(v.day))+': '+v.h.toFixed(1)+'h"></div>').join("");
+  document.getElementById("sparkAx").innerHTML =
+    "<span>"+fmtShort(iso(vals[0].day))+"</span><span>today</span>";
+
+  const total=store.sessions.reduce((a,s)=>a+s.hrs,0);
+  let ar="<table><thead><tr><th>Activity</th><th>Sessions</th><th>Hours</th><th>Share</th></tr></thead><tbody>";
+  ACTS.forEach(a=>{
+    const list=store.sessions.filter(s=>s.act===a);
+    const h=list.reduce((x,s)=>x+s.hrs,0);
+    ar += "<tr><td>"+a+"</td><td>"+list.length+"</td><td>"+h.toFixed(1)+"</td><td>"+
+      (total?Math.round(h/total*100):0)+"%</td></tr>";
+  });
+  ar += "<tr class='tot'><td>Total</td><td>"+store.sessions.length+"</td><td>"+total.toFixed(1)+
+    "</td><td>100%</td></tr></tbody></table>";
+  document.getElementById("actTbl").innerHTML = ar;
+
+  renderSessions("allSessions", store.sessions.slice().sort((a,b)=>a.d<b.d?1:-1).slice(0,60), "Nothing logged yet.");
+}
+function renderSessions(id,list,emptyMsg){
+  const host=document.getElementById(id);
+  if(!list.length){ host.innerHTML='<p class="empty">'+emptyMsg+'</p>'; return; }
+  host.innerHTML='<div class="sessionList">'+list.map(s=>{
+    const gi=store.sessions.indexOf(s);
+    return '<div class="s"><span class="sd">'+fmtShort(s.d)+'</span><span class="sm">'+esc(s.mod)+
+      ' <em>'+esc(s.act||"")+(s.note?' — '+esc(s.note):'')+'</em></span><span class="sh">'+
+      s.hrs.toFixed(1)+'h</span><button class="sx" onclick="delSession('+gi+')" aria-label="Delete">×</button></div>';
+  }).join("")+'</div>';
+}
+function delSession(i){ if(i<0) return; store.sessions.splice(i,1); save(); renderAll(); }
+
+/* ---------- setup ---------- */
+function renderSetup(){
+  const c=cfg();
+  document.getElementById("dateGrid").innerHTML = DATE_FIELDS.map(([k,lbl])=>
+    '<div class="setItem"><label for="dt-'+k+'">'+lbl+'</label>'+
+    '<input type="date" id="dt-'+k+'" value="'+c[k]+'" onchange="setDate(\''+k+'\',this.value)"></div>').join("");
+  document.getElementById("wRange").value = Math.round(W()*100);
+  document.getElementById("wVal").textContent = Math.round(W()*100)+"%";
+  document.getElementById("tRange").value = Math.round(TOL()*100);
+  document.getElementById("tVal").textContent = Math.round(TOL()*100)+"%";
+
+  const mk = lv=>{
+    const cur=S[lv].filter(m=>m.p==="C"), rev=S[lv].filter(m=>m.p==="R");
+    const ch=cur.reduce((a,m)=>a+m.h,0), rh=rev.reduce((a,m)=>a+m.h,0);
+    const cw=Math.max(.1, days(d(lv==="L1"?c.l1s:c.l2s), d(lv==="L1"?c.l1c:c.l2c))/7);
+    const rw=Math.max(.1, days(d(lv==="L1"?c.l1c:c.l2c), d(lv==="L1"?c.l1x:c.l2x))/7);
+    return [lv==="L1"?"Level I":"Level II", cur.length, ch.toFixed(0), cw.toFixed(1),
+            (ch/cw).toFixed(1), rev.length, rh.toFixed(0), rw.toFixed(1), (ch+rh).toFixed(0)];
+  };
+  const r1=mk("L1"), r2=mk("L2");
+  const grand=(parseFloat(r1[8])+parseFloat(r2[8])).toFixed(0);
+  document.getElementById("derivedTbl").innerHTML =
+    "<table><thead><tr><th>Level</th><th>Curriculum modules</th><th>Curriculum hrs</th>"+
+    "<th>Curriculum weeks</th><th>Pace hrs/wk</th><th>Revision blocks</th><th>Revision hrs</th>"+
+    "<th>Revision weeks</th><th>Total hrs</th></tr></thead><tbody>"+
+    [r1,r2].map(r=>"<tr><td>"+r[0]+"</td>"+r.slice(1).map(v=>"<td>"+v+"</td>").join("")+"</tr>").join("")+
+    "<tr class='tot'><td>Both levels</td><td>"+(S.L1.length+S.L2.length)+"</td><td colspan='6'></td><td>"+
+    grand+"</td></tr></tbody></table>";
+
+  document.getElementById("dataFoot").textContent =
+    store.sessions.length+" sessions stored · "+
+    store.sessions.reduce((a,s)=>a+s.hrs,0).toFixed(1)+" hours logged · last backup "+
+    (store.lastBackup || "never");
+}
+function setDate(k,v){ if(!v) return; store.cfg[k]=v; save(); rebuild(); renderAll(); }
+function setW(v){ store.cfg.w = (+v)/100; save(); renderAll(); }
+function setT(v){ store.cfg.tol = (+v)/100; save(); renderAll(); }
+function resetCfg(){
+  if(!confirm("Put the six dates and both sliders back to the original plan?")) return;
+  store.cfg={}; save(); rebuild(); renderAll();
+}
+
+/* ---------- dialog ---------- */
+function openLog(lv,i){
+  const t=todayD();
+  lg.level = lv || phase().lv;
+  lgSetLevel(lg.level);
+  if(i===undefined){
+    const ms=S[lg.level];
+    let k=ms.findIndex((m,x)=>st(lg.level,x)<4 && m.s<=t);
+    if(k<0) k=ms.findIndex((m,x)=>st(lg.level,x)<4);
+    i = k<0?0:k;
+  }
+  document.getElementById("lgMod").value = S[lg.level][i].m;
+  document.getElementById("lgDate").value = iso(t);
+  lgModChanged();
+  document.getElementById("logDlg").showModal();
+}
+function closeLog(){ document.getElementById("logDlg").close(); }
+function lgIndex(){ return S[lg.level].findIndex(m=>m.m===document.getElementById("lgMod").value); }
+function lgSetLevel(l){
+  lg.level=l;
+  [...document.querySelectorAll("#lgLevel button")].forEach((b,k)=>
+    b.setAttribute("aria-pressed",(k===0)===(l==="L1")));
+  document.getElementById("lgMod").innerHTML =
+    S[l].map(m=>'<option value="'+esc(m.m)+'">'+esc(m.m)+'</option>').join("");
+  lgModChanged();
+}
+function lgModChanged(){
+  const i=lgIndex(); if(i<0) return;
+  const m=S[lg.level][i], s=st(lg.level,i);
+  document.getElementById("lgTitle").textContent = m.m;
+  document.getElementById("lgCtx").textContent =
+    m.t+" · "+DATA.weights[lg.level][m.t]+" of the exam · "+loggedFor(lg.level,i).toFixed(1)+
+    " of "+m.h+" hours";
+  document.getElementById("lgCtx2").innerHTML =
+    "Window "+fmtShort(m.s)+" – "+fmtShort(m.e)+" · "+Math.round(progress(lg.level,i)*100)+
+    "% done against "+Math.round(expected(lg.level,i)*100)+"% expected · "+flagHTML(modFlag(lg.level,i));
+  [...document.querySelectorAll("#lgStatus button")].forEach((b,k)=>
+    b.setAttribute("aria-pressed", k===s));
+  document.getElementById("lgModNote").value = note(lg.level,i);
+}
+function lgSetStatus(n){
+  const i=lgIndex(); if(i<0) return;
+  store.status[key(lg.level,i)]=n; save(); lgModChanged(); renderAll();
+}
+function saveModNote(){
+  const i=lgIndex(); if(i<0) return;
+  const v=document.getElementById("lgModNote").value;
+  if(v) store.notes[key(lg.level,i)]=v; else delete store.notes[key(lg.level,i)];
+  save();
+}
+function lgSetAct(a){
+  lg.act=a;
+  [...document.querySelectorAll("#lgAct button")].forEach(b=>
+    b.setAttribute("aria-pressed", b.dataset.act===a));
+}
+function bump(x){
+  const el=document.getElementById("lgHrs");
+  let v=(parseFloat(el.value)||0)+x;
+  el.value=String(Math.round(Math.max(0,Math.min(18,v))*100)/100);
+}
+function saveLog(){
+  const hrs=parseFloat(document.getElementById("lgHrs").value);
+  const mod=document.getElementById("lgMod").value;
+  const hint=document.getElementById("lgHint");
+  if(!(hrs>0)){ hint.textContent="Enter hours greater than zero."; hint.className="hint err"; return; }
+  store.sessions.push({d:document.getElementById("lgDate").value||iso(todayD()),
+    lvl:lg.level, mod, hrs, act:lg.act, note:document.getElementById("lgNote").value.trim()});
+  const i=lgIndex();
+  if(i>=0 && st(lg.level,i)===0) store.status[key(lg.level,i)]=1;
+  document.getElementById("lgNote").value="";
+  hint.textContent="Saved."; hint.className="hint";
+  save(); closeLog(); renderAll();
+}
+
+/* ---------- backup ---------- */
+function dl(name,text,type){
+  const b=new Blob([text],{type}), u=URL.createObjectURL(b), a=document.createElement("a");
+  a.href=u; a.download=name; document.body.appendChild(a); a.click();
+  setTimeout(()=>{URL.revokeObjectURL(u); a.remove();},800);
+}
+function exportJSON(){
+  store.lastBackup=iso(todayD()); save();
+  dl("cfa-record-"+iso(todayD())+".json", JSON.stringify(store,null,1), "application/json");
+  renderAll();
+}
+function exportCSV(){
+  const q=s=>'"'+String(s==null?"":s).replace(/"/g,'""')+'"';
+  const rows=[["Date","Level","Learning Module","Hours","Activity","Notes"]].concat(
+    store.sessions.slice().sort((a,b)=>a.d<b.d?-1:1).map(s=>[s.d,s.lvl,s.mod,s.hrs,s.act,s.note]));
+  dl("cfa-study-log-"+iso(todayD())+".csv", rows.map(r=>r.map(q).join(",")).join("\r\n"), "text/csv");
+}
+function importJSON(input){
+  const f=input.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const o=JSON.parse(r.result);
+      if(!o||typeof o!=="object"||!("sessions" in o)) throw 0;
+      store={status:o.status||{},notes:o.notes||{},sessions:o.sessions||[],
+             cfg:o.cfg||{},lastBackup:o.lastBackup||null};
+      save(); rebuild(); renderAll();
+      alert("Restored "+store.sessions.length+" sessions.");
+    }catch(e){ alert("That file is not a CFA Record backup."); }
+    input.value="";
+  };
+  r.readAsText(f);
+}
+function wipe(){
+  if(!confirm("Erase every session, status and note on this device? This cannot be undone.")) return;
+  store={status:{},notes:{},sessions:[],cfg:store.cfg,lastBackup:null};
+  save(); renderAll();
+}
+
+/* ---------- shell ---------- */
+const TABS=[["today","t-today","tab-today"],["plan","t-plan","tab-plan"],["topic","t-topic","tab-topic"],
+            ["month","t-month","tab-month"],["prog","t-prog","tab-prog"],["set","t-set","tab-set"]];
+function go(id){
+  TABS.forEach(([k,btn,sec])=>{
+    document.getElementById(sec).classList.toggle("on", k===id);
+    document.getElementById(btn).setAttribute("aria-selected", k===id);
+  });
+  window.scrollTo(0,0);
+}
+function setLevel(l){
+  view.level=l;
+  [...document.querySelectorAll("#levelSeg .chip")].forEach((b,k)=>
+    b.setAttribute("aria-pressed",(k===0)===(l==="L1")));
+  renderPlan();
+}
+function setFilter(f){
+  view.filter=f;
+  const order=["all","open","behind","od","rev"];
+  [...document.querySelectorAll("#filtSeg .chip")].forEach((b,k)=>
+    b.setAttribute("aria-pressed",order[k]===f));
+  renderPlan();
+}
+function renderAll(){
+  renderToday(); renderPlan(); renderTopics(); renderMonths(); renderProg(); renderSetup();
+  const stale = store.sessions.length>0 &&
+    (!store.lastBackup || days(d(store.lastBackup), todayD())>7);
+  document.getElementById("backupNag").classList.toggle("on", !!stale);
+}
+load(); rebuild(); renderAll();
+</script>
+</body>
+</html>
